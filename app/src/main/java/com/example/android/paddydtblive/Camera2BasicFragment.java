@@ -327,15 +327,29 @@ public class Camera2BasicFragment extends Fragment
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String code = "";
+                int ix = textToShow.indexOf("ms")+3;
+                int xx = textToShow.indexOf(":");
+
+                String s = (textToShow.substring(textToShow.lastIndexOf("ms")));
+
+
+                while (ix < xx) {
+                     String a = String.valueOf(textToShow.charAt(ix));
+                    code = code + a;
+                    ix++;
+                }
+
+                String finalCode = code;
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Most accurate Item")
                        // .setMessage(textToShow)
-                            .setMessage("Goda Wella")
+                            .setMessage(code)
 
                         .setPositiveButton("More Details", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent i = new Intent(getActivity(), MoreDetails.class);
-                                i.putExtra("PersonID", "sss");
+                                i.putExtra("PersonID", finalCode);
                                 startActivity(i);
 
                             }
